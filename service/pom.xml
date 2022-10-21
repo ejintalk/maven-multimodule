@@ -12,6 +12,7 @@
     <artifactId>service</artifactId>
 
     <dependencies>
+        <!-- 의존성 추가 -->
         <dependency>
             <groupId>com.jirepos</groupId>
             <artifactId>core</artifactId>
@@ -19,4 +20,37 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>deploy-file</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy-file</goal>
+						</goals>
+						<configuration>
+                            <!-- 기본으로 빌드되는 jar 파일 말고, 따로 생성되는 jar 파일을 배포할 때 jar 파일명 -->
+							<file>${project.build.directory}/jirepos-service-${project.version}-proguard.jar</file>
+                            <!-- $MAVEN_HOMNE/conf/settings.xml의 아이디와 동일해야 함 --> 
+							<repositoryId>my-nexus3-release</repositoryId>
+                            <!-- deploy할 url --> 
+							<url>https://mvn3.myrepos.com/repository/maven-releases/</url>
+                            <!-- 이 모듈의 groupId와 artifactId -->
+							<groupId>com.jirpos</groupId>
+							<artifactId>jirepos-service</artifactId>
+							<version>${project.version}</version>
+							<packaging>jar</packaging>
+                            <!-- 별도의 파일을 배포할 때 pom 파일이 중복되지 않도록 false로 설정 -->
+							<generatePom>false</generatePom>
+							<classifier>proguard</classifier>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+        </plugins>
+    </build>
 </project>

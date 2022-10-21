@@ -31,7 +31,7 @@
             </snapshots>
         </repository>
         <repository>
-            <id>naon-nexus3-release</id>
+            <id>my-nexus3-release</id>
             <name>naonsoft nexus3 maven repo </name>
             <url>https://mvn3.naonsoft.com/repository/maven-releases/</url>
         </repository>
@@ -39,8 +39,8 @@
     <!-- 사내 maven repository에 deploy 하기 위한 설정 -->
     <distributionManagement>
         <repository>
-            <id>naon-nexus3-release</id>
-            <name>naonsoft nexus3 maven repo </name>
+            <id>my-nexus3-release</id>
+            <name>my nexus3 maven repo </name>
             <url>https://mvn3.myrepos.com/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
@@ -52,6 +52,7 @@
             <version>1.1.0</version>
         </dependency>
     </dependencies>
+
 
     <build>
         <!-- 부모 pom에서 정의한 plugin management를 자식은 상속 받아서 사용한다. -->
